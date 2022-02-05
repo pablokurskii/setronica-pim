@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'org.setronica.setronica-pim' is invalid and this project uses 'org.setronica.setronicapim' instead.
+* The original package name 'org.setronica.setronica-pim' is invalid and this project uses 'org.setronica.pim' instead.
 
 # Getting Started
 
@@ -41,3 +41,9 @@ The following guides illustrate how to use some features concretely:
 #### Swagger
 * https://www.baeldung.com/spring-rest-openapi-documentation
 
+#### Livereload
+* https://michael.hoennig.de/blog/2018/2018-03-19-livereload-in-chrome-and-firefox-with-springboot-and-intellij-idea.html
+* https://youtrack.jetbrains.com/issue/IDEA-274903
+
+#### Audition
+https://docs.spring.io/spring-data/jpa/docs/1.7.0.DATAJPA-580-SNAPSHOT/reference/html/auditing.html

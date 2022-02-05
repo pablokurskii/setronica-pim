@@ -65,5 +65,9 @@ postgres=# GRANT CREATE, CONNECT ON DATABASE docker_db_testing TO docker_db_test
 GRANT
 
 
+DOCKER
+//docker insert some data when mounted
+//docker pack project into docker container
 
-//
+HTML
+style a bit

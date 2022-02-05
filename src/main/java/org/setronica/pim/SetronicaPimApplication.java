@@ -1,4 +1,4 @@
-package org.setronica.setronicapim;
+package org.setronica.pim;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
