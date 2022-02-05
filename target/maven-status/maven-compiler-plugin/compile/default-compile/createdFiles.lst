@@ -1,0 +1,4 @@
+org\setronica\setronicapim\domain\Product.class
+org\setronica\setronicapim\services\ProductService.class
+org\setronica\setronicapim\SetronicaPimApplication.class
+org\setronica\setronicapim\services\ProductServiceImpl.class
