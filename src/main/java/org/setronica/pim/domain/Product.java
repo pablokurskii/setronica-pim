@@ -21,12 +21,8 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "price")
-    private double price;
-
-    /*TODO enum guide ->https://medium.com/javarevisited/an-effective-way-to-use-java-enums-in-your-spring-application-485c969794a8*/
-    @Column(name = "currency")
-    private String currency;
+    @Column(name = "prices")
+    private String prices;
 
     @Column(name = "created_date", nullable = false, updatable = false)
     @CreatedDate
@@ -63,20 +59,12 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
-        return price;
+    public String getPrices() {
+        return prices;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
+    public void setPrices(String prices) {
+        this.prices = prices;
     }
 
     public long getCreatedDate() {

@@ -18,10 +18,9 @@
         <thead>
         <tr>
             <th scope="col">Product ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Price</th>
-            <th scope="col">Currency</th>
+            <th scope="col">Names</th>
+            <th scope="col">Descriptions</th>
+            <th scope="col">Prices</th>
             <th scope="col">Created</th>
             <th scope="col">Last modified</th>
             <th scope="col">Actions</th>
@@ -30,10 +29,9 @@
         <tbody>
             <tr th:each="product : ${listProducts}">
             <td th:text="${product.id}">Product ID</td>
-            <td th:text="${product.name}">Name</td>
-            <td th:text="${product.description}">Description</td>
-            <td th:text="${product.price}">Price</td>
-            <td th:text="${product.currency}">Currency</td>
+            <td th:text="${product.name}">Names</td>
+            <td th:text="${product.description}">Descriptions</td>
+            <td th:text="${product.prices}">Prices</td>
             <td th:text="${#calendars.format(product.createdDate,'dd/MMM/yyyy HH:mm:ss')}">createdDate</td>
             <td th:text="${#calendars.format(product.modifiedDate,'dd/MMM/yyyy HH:mm:ss')}">modifiedDate</td>
             <td>

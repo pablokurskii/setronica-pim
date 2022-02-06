@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Edit Product</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -14,70 +14,128 @@
 <div class="container ml-0">
     <a th:href="@{/}">Home</a>
     <h1>Edit Product</h1>
-    <br />
+    <br/>
 
     <form action="#" th:action="@{/save}" th:object="${product}"
           method="post">
         <div class="form-group">
             <label for="idInput">ID</label>
-            <input type="text" id="idInput" th:field="*{id}" class="form-control" readonly="readonly" />
+            <input type="text" id="idInput" th:field="*{id}" class="form-control" readonly="readonly"/>
         </div>
-        <div class="form-group">
-            <div id="app">
-                <label for="nameInput">Name</label>
-                <input type="text" id="nameInput" th:field="*{name}" class="form-control" placeholder="Product name" readonly="readonly" >
-<!--                <input type="text" id="nameInput" th:value="*name='JSON.stringify(names)'" class="form-control" placeholder="Product name" readonly="readonly" >-->
-                <i class="fa fa-plus pull-right"  @click="addRow" style="font-size:23px;color:green;cursor:pointer"></i>
-                <table class="table table-bordered table-sm">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Language</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr v-for='(name, index) in names'>
-                        <td>
-                            <input  v-model="name.name" required  class="form-control" type="text" />
-                        </td>
-                        <td>
-                            <input v-model="name.lang" required class="form-control" type="text" />
-                        </td>
-                        <td>
-                            <i  @click="deleteRow(index)" class="fa fa-remove" style="font-size:23px;color:red;cursor:pointer"></i>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+        <div id="app">
+            <div class="form-group">
+                <div class="nameApp">
+                    <label for="nameInput">Name</label>
+                    <input type="text" id="nameInput" th:field="*{name}" class="form-control" placeholder="Product name"
+                           readonly="readonly">
+                    <i class="fa fa-plus pull-right" @click="addRowNames"
+                       style="font-size:23px;color:green;cursor:pointer"></i>
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Language</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for='(name, index) in names'>
+                            <td>
+                                <input v-model="name.name" required class="form-control" type="text"/>
+                            </td>
+                            <td>
+                                <input v-model="name.lang" required class="form-control" type="text"/>
+                            </td>
+                            <td>
+                                <i @click="deleteRowNames(index)" class="fa fa-remove"
+                                   style="font-size:23px;color:red;cursor:pointer"></i>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-
-
+            <div class="form-group">
+                <div class="descriptionApp">
+                    <label for="descriptionInput">Description</label>
+                    <input type="text" id="descriptionInput" th:field="*{description}" class="form-control"
+                           placeholder="Product description"
+                           readonly="readonly">
+                    <i class="fa fa-plus pull-right" @click="addRowDescriptions"
+                       style="font-size:23px;color:green;cursor:pointer"></i>
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Language</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for='(description, index) in descriptions'>
+                            <td>
+                                <input v-model="description.description" class="form-control" type="text"/>
+                            </td>
+                            <td>
+                                <input v-model="description.lang" class="form-control" type="text"/>
+                            </td>
+                            <td>
+                                <i @click="deleteRowNames(index)" class="fa fa-remove"
+                                   style="font-size:23px;color:red;cursor:pointer"></i>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="priceApp">
+                    <label for="priceInput">Price</label>
+                    <input type="text" id="priceInput" th:field="*{prices}" class="form-control"
+                           placeholder="Product price"
+                           readonly="readonly">
+                    <i class="fa fa-plus pull-right" @click="addRowPrices"
+                       style="font-size:23px;color:green;cursor:pointer"></i>
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                        <tr>
+                            <th>Price</th>
+                            <th>Currency</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for='(price, index) in prices'>
+                            <td>
+                                <input type="number" step="0.01" min="0.01" v-model="price.price" class="form-control"
+                                       required/>
+                            </td>
+                            <td>
+                                <input v-model="price.cur" class="form-control" type="text"/>
+                            </td>
+                            <td>
+                                <i @click="deleteRowNames(index)" class="fa fa-remove"
+                                   style="font-size:23px;color:red;cursor:pointer"></i>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <!--HERE descrip multilang-->
-            <label for="descriptionInput">Description</label>
-            <input type="text" id="descriptionInput" th:field="*{description}" class="form-control" placeholder="Description">
-        </div>
-        <div class="form-group">
-            <label for="priceInput">Price</label>
-            <input type="number" step="0.01" min="0.01" id="priceInput" th:field="*{price}" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="currencyInput">Currency</label>
-            <input type="text" id="currencyInput" th:field="*{currency}" class="form-control" placeholder="Currency">
-        </div>
+        [{"name": "table","lang": "us"},{"name": "mesa","lang": "es"}]
 
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script type="text/babel">
    var app = new Vue({
        el: '#app',
        data: {
-        names:[{name:'',lang:''}],
+        names:JSON.parse("[[${product.name}]]".replace(/&quot;/g,'"')),
+        descriptions:JSON.parse("[[${product.description}]]".replace(/&quot;/g,'"')),
+        prices:JSON.parse("[[${product.prices}]]".replace(/&quot;/g,'"'))
        },
        watch: {
            names: {
@@ -85,22 +143,46 @@
                    $("#nameInput")[0].value = JSON.stringify(this.names);
                },
                deep: true
+            },
+            descriptions: {
+               handler: function(val, oldVal) {
+                   $("#descriptionInput")[0].value = JSON.stringify(this.descriptions);
+               },
+               deep: true
+            },
+            prices: {
+               handler: function(val, oldVal) {
+                   $("#priceInput")[0].value = JSON.stringify(this.prices);
+               },
+               deep: true
             }
         },
        methods: {
-        addRow: function() {
+        addRowNames: function() {
            this.names.push({name:'',lang:''});
         },
-        deleteRow(index){
+        deleteRowNames(index){
             this.names.splice(index,1);
+        },
+        addRowDescriptions: function() {
+           this.descriptions.push({description:'',lang:''});
+        },
+        deleteRowDescriptions(index){
+            this.descriptions.splice(index,1);
+        },
+        addRowPrices: function() {
+           this.prices.push({price:0.01,cur:''});
+        },
+        deleteRowPrices(index){
+            this.prices.splice(index,1);
         }
-        /*TODO add create method - get from JPA*/
        },
 
        mounted(){
         window.NamesVue = this;
        }
       })
+
 </script>
 </body>
 </html>
