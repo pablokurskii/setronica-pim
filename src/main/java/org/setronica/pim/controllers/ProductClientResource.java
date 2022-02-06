@@ -23,22 +23,16 @@ public class ProductClientResource {
         this.service = service;
     }
 
-    @GetMapping("/api/product")
-    public Product getProductById(@RequestParam(required = true, name = "id") long id,
+    @GetMapping("/api/product/{id}")
+    public Product getProductById(@PathVariable(name = "id") long id,
                                   @RequestParam(required = true, name = "language") String language,
                                   @RequestParam(required = true, name = "currency") String currency) {
         /*TODO search match currency/language in name&description*/
         return service.get(id);
     }
 
-    @GetMapping("/api/products")
-    public List<Product> getProducts(@RequestParam(required = true, name = "language") String language,
-                                     @RequestParam(required = true, name = "currency") String currency) {
-        return service.getAll();
-    }
-
     @RequestMapping(method = RequestMethod.GET, value = "/api/product", params = "name")
-    public List<Product> getProductByName(@RequestParam(required = true, name = "name") String name,
+    public List<Product> getProductByName(@RequestParam(name = "name") String name,
                                           @RequestParam(required = true, name = "language") String language,
                                           @RequestParam(required = true, name = "currency") String currency,
                                           Model model) {
@@ -46,11 +40,17 @@ public class ProductClientResource {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/api/product", params = "description")
-    public List<Product> getProductByDescription(@RequestParam(required = true, name = "description") String description,
+    public List<Product> getProductByDescription(@RequestParam(name = "description") String description,
                                                  @RequestParam(required = true, name = "language") String language,
                                                  @RequestParam(required = true, name = "currency") String currency,
                                                  Model model) {
         return service.getByDescription(description);
+    }
+
+    @GetMapping("/api/products")
+    public List<Product> getProducts(@RequestParam(required = true, name = "language") String language,
+                                     @RequestParam(required = true, name = "currency") String currency) {
+        return service.getAll();
     }
 
     @ControllerAdvice

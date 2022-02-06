@@ -50,11 +50,6 @@ getAll
 
 https://www.baeldung.com/spring-boot-postgresql-docker
 
-TBUpgraded
-- product1 NCurrency-Price
-Mat - RU-12
-Mat - EUR-1
-...
 
 application.properties ??
 postgres=# create database docker_db_testing;
@@ -68,6 +63,3 @@ GRANT
 DOCKER
 //docker insert some data when mounted
 //docker pack project into docker container
-
-TESTS
-//api tests

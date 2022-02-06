@@ -14,6 +14,8 @@ import org.setronica.pim.services.ProductService;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.List;
+
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -34,13 +36,10 @@ class ProductClientResourceControllerTest {
     @DisplayName("should return product by id")
     @Test
     void shouldReturnExpectedProductById() throws Exception {
-        String names = "[{\"name\":\"table1\",\"lang\":\"us\"},{\"name\":\"mesa\",\"lang\":\"es\"}]";
-        String description = "[{\"description\":\"table2\",\"lang\":\"us\"},{\"description\":\"table2\",\"lang\":\"es\"}]";
-        String prices = "[{\"price\": 0.01,\"cur\": \"usd\"}]";
-        Product expectedProduct = new Product(1L, names, description, prices);
+        Product expectedProduct = new Product(1L, "table1", "null", "null");
         Gson gson = new GsonBuilder().create();
         given(service.get(1L)).willReturn(expectedProduct);
-        mvc.perform(get("/api/product/{id}", 1L).accept("application/json; charset=utf-8"))
+        mvc.perform(get("/api/product/{id}?language=en&currency=usd", 1L).accept("application/json; charset=utf-8"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(gson.toJson(expectedProduct)));
     }
@@ -48,12 +47,24 @@ class ProductClientResourceControllerTest {
     @DisplayName("should return product list by name")
     @Test
     void shouldReturnProductListByName() throws Exception {
-        String names = "[{\"name\":\"table1\",\"lang\":\"us\"}]";
-        Product expectedProduct = new Product(1L, names);
+        String name = "chair";
+        Product expectedProduct = new Product(1L, name, "null", "null");
         Gson gson = new GsonBuilder().create();
-        given(service.get(1L)).willReturn(expectedProduct);
-        mvc.perform(get("/api/product/{names}", 1L).accept("application/json; charset=utf-8"))
+        given(service.getByName(name)).willReturn(List.of(expectedProduct));
+        mvc.perform(get("/api/product?name=" + name + "&language=en&currency=usd", 1L).accept("application/json; charset=utf-8"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(gson.toJson(expectedProduct)));
+                .andExpect(content().string(gson.toJson(List.of(expectedProduct))));
+    }
+
+    @DisplayName("should return product list by description")
+    @Test
+    void shouldReturnProductListByDescription() throws Exception {
+        String description = "chair description";
+        Product expectedProduct = new Product(1L, "name", description, "null");
+        Gson gson = new GsonBuilder().create();
+        given(service.getByDescription(description)).willReturn(List.of(expectedProduct));
+        mvc.perform(get("/api/product?description=" + description + "&language=en&currency=usd", 1L).accept("application/json; charset=utf-8"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(gson.toJson(List.of(expectedProduct))));
     }
 }

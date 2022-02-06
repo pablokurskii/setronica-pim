@@ -29,6 +29,3 @@ hs_err_pid*
 .idea
 out
 test-output
-
-#application config
-setronica.yml
