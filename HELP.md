@@ -46,4 +46,8 @@ The following guides illustrate how to use some features concretely:
 * https://youtrack.jetbrains.com/issue/IDEA-274903
 
 #### Audition
-https://docs.spring.io/spring-data/jpa/docs/1.7.0.DATAJPA-580-SNAPSHOT/reference/html/auditing.html
+* https://docs.spring.io/spring-data/jpa/docs/1.7.0.DATAJPA-580-SNAPSHOT/reference/html/auditing.html
+
+
+#### Query methods
+* https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods

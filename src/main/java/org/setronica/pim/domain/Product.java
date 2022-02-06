@@ -34,6 +34,21 @@ public class Product {
 
 
 
+    public Product() {
+    }
+
+    public Product(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Product(Long id, String name, String description, String prices) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.prices = prices;
+    }
+
     /*TODO Lombok*/
     public Long getId() {
         return id;

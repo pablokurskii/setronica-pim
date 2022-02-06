@@ -30,6 +30,18 @@ public class ProductServiceImpl implements ProductService {
         return repo.findById(id).get();
     }
 
+    public List<Product> getByName(String name) {
+        return repo.findByNameContaining(name);
+    }
+
+    public List<Product> getByDescription(String description) {
+        return repo.findByDescriptionContaining(description);
+    }
+
+    public List<Product> getAll() {
+        return repo.findAll();
+    }
+
     @Override
     public void delete(long id) {
         repo.deleteById(id);
