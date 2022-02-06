@@ -17,15 +17,19 @@
     <form action="#" th:action="@{/save}" th:object="${product}"
           method="post">
         <div class="form-group">
+            <label for="nameInput">Name</label>
             <input type="text" id="nameInput" th:field="*{name}" class="form-control" placeholder="Product name" required>
         </div>
         <div class="form-group">
+            <label for="descriptionInput">Description</label>
             <input type="text" id="descriptionInput" th:field="*{description}" class="form-control" placeholder="Description">
         </div>
         <div class="form-group">
+            <label for="priceInput">Price</label>
             <input type="number" step="0.01" min="0.01" id="priceInput" th:field="*{price}" class="form-control">
         </div>
         <div class="form-group">
+            <label for="currencyInput">Currency</label>
             <input type="text" id="currencyInput" th:field="*{currency}" class="form-control" placeholder="Currency">
         </div>
 

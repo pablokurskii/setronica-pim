@@ -56,7 +56,7 @@ public class AppController {
     }
 
     @ExceptionHandler(NoSuchElementException.class)
-    public ModelAndView handleNotFoundResource() {
-        return new ModelAndView("404");
+    public String handleNotFoundResource() {
+        return "redirect:/404";
     }
 }
